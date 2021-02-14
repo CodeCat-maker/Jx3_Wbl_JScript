@@ -1,0 +1,58 @@
+//@codecat
+//民间脚本主要还是看网速
+//不要跟大魔法师比脚本的速度
+var getBuyButton = function(){
+	var time = new Date();
+	console.log(time.toLocaleTimeString());
+	var a = document.getElementsByClassName("app-web-components-button-index-m__flexWrap--1XxoH app-web-components-button-index-m__jcCenter--IE9-y app-web-components-button-index-m__contentWrap--3iAjq")[1];
+	if( a != undefined){
+		console.log("购买按钮已经点击");
+		a.click();
+		getSetButton();
+		return
+	}else{
+		console.log("当前等待按钮出现");
+		setTimeout('getBuyButton()',50);
+	}	
+}
+var isBuied = false;
+var getSetButton = function(){
+	console.log("正在执行获取验证码");
+	var time = new Date();
+	console.log(time.toLocaleTimeString());
+	var b = document.getElementsByClassName("app-web-components-modal-kit-components-styles-components-m__modalButtonText--1YH6P")[1];
+	if( b != undefined){
+		console.log(isBuied)
+		console.log("确定按钮已经点击");
+		if(isBuied == false){
+			isBuied = true;
+			b.click();
+			getPayButton();
+		}
+		
+		return
+	}else{
+		if(isBuied == true)return;
+		console.log("当前确定等待按钮出现");
+		setTimeout('getSetButton()',50);
+
+	}	
+}
+
+var getPayButton = function(){
+	console.log("正在执行获取支付码")
+	var time = new Date();
+	console.log(time.toLocaleTimeString());
+	var c = document.getElementsByClassName("ant-collapse-header")[1];
+	if( c != undefined){
+		console.log("支付按钮已经点击");
+		c.click();
+		
+	}else{
+		console.log("当前支付等待按钮出现");
+		setTimeout('getPayButton()',50);
+	}	
+}
+
+
+getBuyButton();
